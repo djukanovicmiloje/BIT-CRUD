@@ -1,6 +1,11 @@
 import React from "react";
 import Column from "../../../SharedComponents/Column/Column";
+import { Link } from "react-router-dom";
 
-const HeaderButton = ({text}) => <Column >{text}</Column>
+const HeaderButton = ({ text, linkTo }) => (
+  <Column>
+    <Link to={linkTo}>{text}</Link>
+  </Column>
+);
 
 export default HeaderButton;

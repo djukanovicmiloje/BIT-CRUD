@@ -3,15 +3,16 @@ import Row from "../../SharedComponents/Row/Row";
 import Column from "../../SharedComponents/Column/Column";
 import Title from "../../SharedComponents/Title/Title";
 import HeaderButton from "./HeaderButton/HeaderButton";
-import "./Header.css"
-
+import "./Header.css";
 
 const Header = props => (
   <Row style="header">
-    <Title text="Bit CRUD" />
     <Column>
-      <HeaderButton text="About" />
-      <HeaderButton text="Posts" />
+      <Title text="Bit CRUD" />
+    </Column>
+    <Column>
+      <HeaderButton text="About" linkTo="/about"/>
+      <HeaderButton text="Posts" linkTo="/posts"/>
     </Column>
   </Row>
 );
