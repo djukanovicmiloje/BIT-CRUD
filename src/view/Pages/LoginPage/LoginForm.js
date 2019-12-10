@@ -6,6 +6,8 @@ import Column from "../../SharedComponents/Column/Column"
 import Button from "../../SharedComponents/Button/Button";
 import Icon from "../../SharedComponents/Icon/Icon";
 import Title from "../../SharedComponents/Title/Title";
+import login from "../../../services/login";
+import { http } from "../../../services/HttpService";
 
 class LoginForm extends React.Component {
     constructor() {
@@ -24,7 +26,8 @@ class LoginForm extends React.Component {
             email: this.email,
             password: this.password
         }
-        console.log(loginInfo);
+
+        http.post("http://crud-api.hypetech.xyz/v1/auth/login", loginInfo);
     }
     render() {
         return <Row>

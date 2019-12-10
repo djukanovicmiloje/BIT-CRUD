@@ -6,6 +6,7 @@ import Column from "../../SharedComponents/Column/Column"
 import Button from "../../SharedComponents/Button/Button";
 import Icon from "../../SharedComponents/Icon/Icon";
 import Title from "../../SharedComponents/Title/Title";
+import { http } from "../../../services/HttpService";
 
 class SignupForm extends React.Component {
     constructor() {
@@ -29,12 +30,11 @@ class SignupForm extends React.Component {
     }
     onSignUpClick() {
         const signUpInfo = {
-            firstName: this.firstName,
-            lastName: this.lastName,
+            name: `${this.firstName} ${this.lastName}`,
             email: this.email,
             password: this.password
         }
-        console.log(signUpInfo);
+        http.post("http://crud-api.hypetech.xyz/v1/auth/register", signUpInfo, console.log);
     }
     render() {
         return <Row>
