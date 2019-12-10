@@ -3,7 +3,7 @@
 }
 
 .col2{
-    flex-basis: 50%;
+    flex-basis: 44.4%;
 }
 
 
@@ -17,8 +17,7 @@
 
 .col{
     margin: 10px;
-    display: flex;
-    border: 2px solid black;
+    display: flex;    
     flex-wrap: wrap;
-
+    justify-content: center;
 }
