@@ -1,0 +1,36 @@
+
+.inputContainer{
+    position: relative;
+    width: 100%;
+}
+.loginInput{
+    padding: 1em;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #808080;
+    position: relative;
+    outline: none;
+}
+.loginInput:focus{
+    border: 2px solid #2278cf;
+}
+.loginInput:focus + .label{
+    display: block;
+}
+.loginInput:focus::placeholder{
+    color: transparent;
+}
+
+.label{
+    font-size: 10px;
+    color: #2278cf;
+    font-weight: bold;
+    position: absolute;
+    top: -0.5em;
+    left: 1em;
+    background: white;
+    display: none;
+    padding: 0 0.2em;
+}
+
+

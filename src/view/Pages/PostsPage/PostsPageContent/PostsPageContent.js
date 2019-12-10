@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "../../../SharedComponents/Row/Row";
 import PostCard from "./PostCard/PostCard";
-import fetchPosts from "../../../../services/fetchPosts";
+import { http } from "../../../../services/HttpService";
 
 class PostsPageContent extends React.Component {
   constructor() {
@@ -10,15 +10,16 @@ class PostsPageContent extends React.Component {
       loading: true
     };
   }
+  setPosts(posts) {
+    this.setState({ loading: false, posts })
+  }
   getPosts() {
-    fetchPosts().then(response =>
-      this.setState({ loading: false, posts: response.data })
-    );
+    http.get("http://crud-api.hypetech.xyz/v1/posts", (posts) => this.setPosts(posts));
   }
-  componentDidMount(){
-      this.getPosts();
+  componentDidMount() {
+    this.getPosts();
   }
-  render() {   
+  render() {
     if (this.state.loading) {
       return <div>Page is loading</div>;
     }
