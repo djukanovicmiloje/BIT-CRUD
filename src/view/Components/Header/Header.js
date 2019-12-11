@@ -8,7 +8,7 @@ import "./Header.css";
 const Header = ({ buttons }) => (
   <Row style="header">
     <Column>
-      <Title text="Bit CRUD" />
+      <Title text="CRUD" />
     </Column>
     <Column>
       {buttons.map(button => (

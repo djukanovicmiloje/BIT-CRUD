@@ -33,7 +33,7 @@ class SignupForm extends React.Component {
   }
   onUnSuccessfulSignUp(response) {
     const loginError = handleLoginError(response);
-    this.setState({ loginError });
+    this.setState({ ...loginError });
   }
   onSignUpClick() {
     const signUpInfo = {
@@ -41,6 +41,14 @@ class SignupForm extends React.Component {
       email: this.state.email,
       password: this.state.password
     };
+    if (this.state.firstName.length < 3) {
+      this.state.loginError.firstName = "Invalid name"
+      this.setState(this.state.loginError);
+    }
+    if (this.state.lastName.length < 3) {
+      this.state.loginError.lastName = "Invalid last name"
+      this.setState(this.state.loginError);
+    }
     http.post(
       "http://crud-api.hypetech.xyz/v1/auth/register",
       signUpInfo,
@@ -68,6 +76,7 @@ class SignupForm extends React.Component {
               onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="First Name"
               name="firstName"
+              error={this.state.loginError.firstName}
             />
           </Column>
           <Column basis={2}>
@@ -75,6 +84,7 @@ class SignupForm extends React.Component {
               onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Last Name"
               name="lastName"
+              error={this.state.loginError.lastName}
             />
           </Column>
           <Column basis={3}>
@@ -82,6 +92,7 @@ class SignupForm extends React.Component {
               onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Email Address"
               name="email"
+              error={this.state.loginError.email}
             />
           </Column>
           <Column basis={3}>
@@ -89,6 +100,7 @@ class SignupForm extends React.Component {
               onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Password"
               name="password"
+              error={this.state.loginError.password}
             />
           </Column>
           <Column basis={3}>
