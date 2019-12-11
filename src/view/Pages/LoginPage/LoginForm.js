@@ -8,38 +8,56 @@ import Title from "../../Components/Title/Title";
 import { http } from "../../../services/HttpService";
 import storeUserKey from "../../../services/StoreUserKey";
 import { Redirect, Link } from "react-router-dom";
+import handleLoginError from "../../../services/handleLoginError";
 
 class LoginForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: sessionStorage.getItem("loggedIn")
+      loggedIn: sessionStorage.getItem("loggedIn"),
+      loginError: {
+        email: "",
+        password: ""
+      }
     };
   }
-  onEmailChange(event) {
-    this.email = event.target.value;
+
+  onInputChange(name, value) {
+    this.setState({ [name]: value });
   }
-  onPasswordChange(event) {
-    this.password = event.target.value;
+
+  onInputClick() {
+    this.setState({
+      loginError: {
+        email: "",
+        password: ""
+      }
+    })
   }
-  onSuccesfulLogin(response) {
+
+  onSuccessfulLogin(response) {
     storeUserKey(response);
     this.setState({
       loggedIn: true
     });
   }
+
+  onUnSuccessfulLogin(response) {
+    const loginError = handleLoginError(response);
+    this.setState({ loginError });
+  }
+
   onSignInClick() {
     const loginInfo = {
-      email: this.email,
-      password: this.password
+      email: this.state.email,
+      password: this.state.password
     };
-    console.log(loginInfo);
 
     http.post(
       "http://crud-api.hypetech.xyz/v1/auth/login",
       loginInfo,
-      response => this.onSuccesfulLogin(response),
-      console.log
+      response => this.onSuccessfulLogin(response),
+      response => this.onUnSuccessfulLogin(response)
     );
   }
   render() {
@@ -59,14 +77,20 @@ class LoginForm extends React.Component {
           </Column>
           <Column basis={3}>
             <Input
-              onChange={event => this.onEmailChange(event)}
+              onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Email Address"
+              name="email"
+              error={this.state.loginError.email}
+              onClick={() => this.onInputClick()}
             />
           </Column>
           <Column basis={3}>
             <Input
-              onChange={event => this.onPasswordChange(event)}
+              onChange={(name, value) => this.onInputChange(name, value)}
+              onClick={() => this.onInputClick()}
               placeholder="Password"
+              name="password"
+              error={this.state.loginError.password}
             />
           </Column>
           <Column basis={3}>
@@ -83,6 +107,5 @@ class LoginForm extends React.Component {
       </Row>
     );
   }
-}
-
+};
 export default LoginForm;

@@ -14,33 +14,26 @@ class UpdatePost extends React.Component {
       loading: true
     };
   }
-  onTitleChange(event) {
-    this.title = event.target.value;
-  }
-  onSubtitleChange(event) {
-    this.subtitle = event.target.value;
-  }
-  onImageChange(event) {
-    this.image = event.target.value;
-  }
-  onBodyChange(event) {
-    this.body = event.target.value;
+
+  onInputChange(name, value) {
+    this.setState({ [name]: value })
   }
   onUpdateClick() {
     const postInfo = {
-      title: this.title,
-      subtitle: this.subtitle,
-      imageUrl: this.image,
-      text: this.body,
-      isPublic: this.private,
-      sid: this.state.post.sid
+      title: this.state.title,
+      subtitle: this.state.subtitle,
+      imageUrl: this.state.imageUrl,
+      text: this.state.text,
+      sid: this.state.sid
     };
+    console.log(postInfo);
     userRequsets.updatePost(this.postId, postInfo, console.log);
   }
   getPost() {
-    userRequsets.singlePost(this.postId, post =>
-      this.setState({ post, loading: false })
-    );
+    userRequsets.singlePost(this.postId, post => {
+      const { title, subtitle, imageUrl, text, sid } = post
+      this.setState({ title, subtitle, imageUrl, text, sid, loading: false })
+    });
   }
   componentDidMount() {
     this.getPost();
@@ -53,32 +46,30 @@ class UpdatePost extends React.Component {
       <Row>
         <Column basis={2}>
           <TextBox
-            value={this.state.post.title}
-            onChange={e => this.onTitleChange(e)}
-            placholder="Title"
+            value={this.state.title}
+            onChange={(name, value) => this.onInputChange(name, value)}
+            name="title"
           />
         </Column>
         <Column basis={2}>
           <TextBox
-            value={this.state.post.subtitle}
-            onChange={e => this.onSubtitleChange(e)}
-            placholder="Subtitle"
+            value={this.state.subtitle}
+            onChange={(name, value) => this.onInputChange(name, value)}
+            name="subtitle"
           />
         </Column>
         <Column basis={2}>
           <TextBox
-            value={this.state.post.imageUrl}
-            onChange={e => this.onImageChange(e)}
-            placholder="Image URL"
+            value={this.state.imageUrl}
+            onChange={(name, value) => this.onInputChange(name, value)}
+            name="imageUrl"
           />
         </Column>
         <Column basis={3}>
           <TextBox
-            value={this.state.post.text}
-            onChange={e => {
-              this.onBodyChange(e), console.log(e.target.value);
-            }}
-            placholder="Body"
+            value={this.state.text}
+            onChange={(name, value) => { this.onInputChange(name, value); }}
+            name="text"
           />
         </Column>
         <Column>

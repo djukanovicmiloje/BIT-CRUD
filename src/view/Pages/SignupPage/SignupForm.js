@@ -7,42 +7,45 @@ import Icon from "../../Components/Icon/Icon";
 import Title from "../../Components/Title/Title";
 import { http } from "../../../services/HttpService";
 import storeUserKey from "../../../services/StoreUserKey";
-import {Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import handleLoginError from "../../../services/handleLoginError";
 
 class SignupForm extends React.Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: sessionStorage.getItem("loggedIn")
+      loggedIn: sessionStorage.getItem("loggedIn"),
+      loginError: {
+        email: "",
+        password: "",
+        name: "",
+        lastName: ""
+      }
     };
   }
-  onEmailChange(event) {
-    this.email = event.target.value;
+  onInputChange(name, value) {
+    this.setState({ [name]: value });
   }
-  onPasswordChange(event) {
-    this.password = event.target.value;
-  }
-  onFirstNameChange(event) {
-    this.firstName = event.target.value;
-  }
-  onLastNameChange(event) {
-    this.lastName = event.target.value;
-  }
-  onSuccessfullSignUp(response) {
+
+  onSuccessfulSignUp(response) {
     storeUserKey(response);
     this.setState({ loggedIn: true });
   }
+  onUnSuccessfulSignUp(response) {
+    const loginError = handleLoginError(response);
+    this.setState({ loginError });
+  }
   onSignUpClick() {
     const signUpInfo = {
-      name: `${this.firstName} ${this.lastName}`,
-      email: this.email,
-      password: this.password
+      name: `${this.state.firstName} ${this.state.lastName}`,
+      email: this.state.email,
+      password: this.state.password
     };
     http.post(
       "http://crud-api.hypetech.xyz/v1/auth/register",
       signUpInfo,
-      r => this.onSuccessfullSignUp(r),
-      console.log
+      r => this.onSuccessfulSignUp(r),
+      r => this.onUnSuccessfulSignUp(r)
     );
   }
   render() {
@@ -62,26 +65,30 @@ class SignupForm extends React.Component {
           </Column>
           <Column basis={2}>
             <Input
-              onChange={event => this.onFirstNameChange(event)}
+              onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="First Name"
+              name="firstName"
             />
           </Column>
           <Column basis={2}>
             <Input
-              onChange={event => this.onLastNameChange(event)}
+              onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Last Name"
+              name="lastName"
             />
           </Column>
           <Column basis={3}>
             <Input
-              onChange={event => this.onEmailChange(event)}
+              onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Email Address"
+              name="email"
             />
           </Column>
           <Column basis={3}>
             <Input
-              onChange={event => this.onPasswordChange(event)}
+              onChange={(name, value) => this.onInputChange(name, value)}
               placeholder="Password"
+              name="password"
             />
           </Column>
           <Column basis={3}>
