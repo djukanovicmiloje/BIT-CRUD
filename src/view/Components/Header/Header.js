@@ -1,18 +1,19 @@
 import React from "react";
-import Row from "../../SharedComponents/Row/Row";
-import Column from "../../SharedComponents/Column/Column";
-import Title from "../../SharedComponents/Title/Title";
+import Row from "../Row/Row";
+import Column from "../Column/Column";
+import Title from "../Title/Title";
 import HeaderButton from "./HeaderButton/HeaderButton";
 import "./Header.css";
 
-const Header = props => (
+const Header = ({ buttons }) => (
   <Row style="header">
     <Column>
       <Title text="Bit CRUD" />
     </Column>
     <Column>
-      <HeaderButton text="About" linkTo="/about"/>
-      <HeaderButton text="Posts" linkTo="/posts"/>
+      {buttons.map(button => (
+        <HeaderButton text={button.text} linkTo={button.link} />
+      ))}
     </Column>
   </Row>
 );

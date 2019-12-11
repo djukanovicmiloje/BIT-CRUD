@@ -1,0 +1,12 @@
+.textBox{
+    border: none;
+    outline: none;
+    line-height: 1.4em;
+    padding: 0 1em;
+    border-bottom: 2px solid #808080; 
+    width: 100%;
+    resize: none;
+}
+.textBox:focus{
+    border-bottom: 2px solid green ;
+}

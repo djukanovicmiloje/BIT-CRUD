@@ -11,7 +11,7 @@ class Column extends React.Component{
         } else {
             colClass = "auto"
         }
-    return <div className={`col col${colClass}`}>{this.props.children}</div>;
+    return <div className={`col col${colClass} ${this.props.style}`}>{this.props.children}</div>;
     }
 }
 

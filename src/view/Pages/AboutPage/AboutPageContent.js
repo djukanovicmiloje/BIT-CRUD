@@ -1,8 +1,8 @@
 import React from "react";
-import Row from "../../SharedComponents/Row/Row";
-import Title from "../../SharedComponents/Title/Title";
-import Column from "../../SharedComponents/Column/Column";
-import Text from "../../SharedComponents/Text/Text";
+import Row from "../../Components/Row/Row";
+import Title from "../../Components/Title/Title";
+import Column from "../../Components/Column/Column";
+import Text from "../../Components/Text/Text";
 
 const AboutPageContent = (props) => <Row>
     <Column basis={3}>

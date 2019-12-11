@@ -1,5 +1,5 @@
 import React from "react";
-import Column from "../../../SharedComponents/Column/Column";
+import Column from "../../Column/Column";
 import { Link } from "react-router-dom";
 
 const HeaderButton = ({ text, linkTo }) => (

@@ -8,7 +8,13 @@
     border-radius: 50%;
     color: white;
 }
-
+.dash_icon{
+    font-size: 50px;
+}
+.post_icon{
+    color: black;
+    font-size: 25px;
+}
 .iconwhite{
     color: white;
 }

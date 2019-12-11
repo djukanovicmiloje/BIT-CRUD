@@ -1,6 +1,6 @@
 import React from "react";
-import Column from "../../../../SharedComponents/Column/Column";
-import Title from "../../../../SharedComponents/Title/Title";
+import Column from "../../../../Components/Column/Column";
+import Title from "../../../../Components/Title/Title";
 import "./PostCard.css";
 
 const PostCard = ({ post }) => (

@@ -1,3 +1,9 @@
 .header{
     background-color: #4154b3;
+    color: white;
+}
+.header a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }

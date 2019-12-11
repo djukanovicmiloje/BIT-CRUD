@@ -1,3 +1,9 @@
 .footer{
     background-color: #4154b3;
+    color: white;
+    font-weight: bold;
+}
+.footer a{
+    text-decoration: none;
+    color: white
 }

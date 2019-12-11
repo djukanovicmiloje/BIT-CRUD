@@ -1,14 +1,20 @@
 import React from "react";
-import Row from "../../SharedComponents/Row/Row";
-import Column from "../../SharedComponents/Column/Column";
-import Title from "../../SharedComponents/Title/Title";
+import Row from "../../Components/Row/Row";
+import Column from "../../Components/Column/Column";
+import Subtitle from "../../Components/Subtitle/Subtitle";
 import "./Footer.css";
+import LogIn from "./LogIn";
+import LogOut from "./LogOut";
 
-
-const Footer = props => <Row style="footer">
+const Footer = props => (
+  <Row style="footer">
     <Column>
-    <Title text="Bit student 2019"/>
+      <Subtitle text="Bit student 2019" />
     </Column>
-</Row>
+    <Column>
+      {sessionStorage.getItem("loggedIn") ? <LogOut /> : <LogIn />}
+    </Column>
+  </Row>
+);
 
 export default Footer;
