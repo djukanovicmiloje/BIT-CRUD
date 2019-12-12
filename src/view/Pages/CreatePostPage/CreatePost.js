@@ -3,6 +3,7 @@ import TextBox from "../../Components/TextBox/TextBox";
 import Row from "../../Components/Row/Row";
 import Column from "../../Components/Column/Column";
 import Button from "../../Components/Button/Button";
+import Title from "../../Components/Title/Title"
 import { users } from "../../../services/HttpServiceLoggedIn";
 
 class CreatePost extends React.Component {
@@ -26,18 +27,19 @@ class CreatePost extends React.Component {
   render() {
     return (
       <Row>
+        <Row><Title text="Create Post" /></Row>
         <Column basis={2}>
-          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="title" placholder="Title" />
+          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="title" placeholder="Title" />
         </Column>
         <Column basis={2}>
-          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="subtitle" placholder="Subtitle" />
+          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="subtitle" placeholder="Subtitle" />
         </Column>
         <Column basis={2}>
-          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="imageUrl" placholder="Image URL" />
+          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="imageUrl" placeholder="Image URL" />
         </Column>
-        <Column basis={2}><input type="checkbox" onChange={(e) => this.onPrivateChange(e)}></input></Column>
+        <Column basis={2}><span>Public</span><input type="checkbox" onChange={(e) => this.onPrivateChange(e)}></input></Column>
         <Column basis={3}>
-          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="text" placholder="Body" />
+          <TextBox onChange={(name, value) => this.onInputChange(name, value)} name="text" placeholder="Body" />
         </Column>
         <Column>
           <Button text="Save" color="green" onClick={() => this.onSaveClick()} />

@@ -14,7 +14,7 @@ class DashBoard extends React.Component {
   getInfo() {
     userRequsets.posts(posts => this.setState({ posts }));
     userRequsets.users(users => this.setState({ users }));
-    userRequsets.comments(comments => this.setState({ comments , loading: false}));
+    userRequsets.comments(comments => this.setState({ comments, loading: false }));
 
     // Promise.all([posts, users, comments]).then(() => this.setState({
     //     posts: this.posts,
@@ -27,15 +27,14 @@ class DashBoard extends React.Component {
     this.getInfo();
   }
   render() {
-    console.log(this.state);
     if (this.state.loading) {
       return <div>Page is Loading</div>;
     }
     return (
       <Row>
-          <DashBoardBox icon="font" number={this.state.posts.length} text="Total posts"/>
-          <DashBoardBox icon="user-friends" number={this.state.users.length} text="Total users"/>
-          <DashBoardBox icon="comment" number={this.state.comments.length} text="Total comments"/>
+        <DashBoardBox icon="font" number={this.state.posts.length} text="Total posts" />
+        <DashBoardBox icon="user-friends" number={this.state.users.length} text="Total users" />
+        <DashBoardBox icon="comment" number={this.state.comments.length} text="Total comments" />
       </Row>
     );
   }

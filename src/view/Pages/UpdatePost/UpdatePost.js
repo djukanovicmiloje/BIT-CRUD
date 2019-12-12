@@ -49,6 +49,7 @@ class UpdatePost extends React.Component {
             value={this.state.title}
             onChange={(name, value) => this.onInputChange(name, value)}
             name="title"
+            placeholder="Title"
           />
         </Column>
         <Column basis={2}>
@@ -56,6 +57,7 @@ class UpdatePost extends React.Component {
             value={this.state.subtitle}
             onChange={(name, value) => this.onInputChange(name, value)}
             name="subtitle"
+            placeholder="Subtitle"
           />
         </Column>
         <Column basis={2}>
@@ -63,6 +65,7 @@ class UpdatePost extends React.Component {
             value={this.state.imageUrl}
             onChange={(name, value) => this.onInputChange(name, value)}
             name="imageUrl"
+            placeholder="Image URL"
           />
         </Column>
         <Column basis={3}>
@@ -70,6 +73,7 @@ class UpdatePost extends React.Component {
             value={this.state.text}
             onChange={(name, value) => { this.onInputChange(name, value); }}
             name="text"
+            placeholder="Body"
           />
         </Column>
         <Column>

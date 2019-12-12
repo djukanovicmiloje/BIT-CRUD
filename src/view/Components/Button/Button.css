@@ -1,7 +1,7 @@
-.button{
+.button {
     outline: none;
     font-size: 20px;
-    padding: 0.4em;
+    padding: 0.7em;
     flex-basis: 100%;
     text-align: center;
     font-weight: bold;
@@ -9,14 +9,14 @@
     color: white;
 }
 
-.btnred{
+.btnred {
     background-color: #f2453d;
 }
 
-.btngreen{
+.btngreen {
     background-color: #2fa69a;
 }
 
-.btnblue{
+.btnblue {
     background-color: #2278cf;
 }

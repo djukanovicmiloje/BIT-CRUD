@@ -1,6 +1,7 @@
 import React from "react";
 import Column from "../../../../Components/Column/Column";
 import Subtitle from "../../../../Components/Subtitle/Subtitle";
+import Text from "../../../../Components/Text/Text";
 import "./PostCard.css";
 
 const PostCard = ({ post }) => (
@@ -11,7 +12,12 @@ const PostCard = ({ post }) => (
     <Column basis={3}>
       <Subtitle text={post.title} />
     </Column>
-
+    <Column basis={3}>
+      <Text text={post.subtitle} />
+    </Column>
+    <Column basis={3}>
+      <Text text={post.text} />
+    </Column>
   </Column>
 );
 
