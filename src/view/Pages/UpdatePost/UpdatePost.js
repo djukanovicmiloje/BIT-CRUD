@@ -5,19 +5,20 @@ import Row from "../../Components/Row/Row";
 import Column from "../../Components/Column/Column";
 import Button from "../../Components/Button/Button";
 
-
 class UpdatePost extends React.Component {
   constructor({ postId }) {
     super();
     this.postId = postId;
-    this.state = {
-      loading: true
-    };
   }
 
+  state = {
+    loading: true
+  };
+
   onInputChange(name, value) {
-    this.setState({ [name]: value })
+    this.setState({ [name]: value });
   }
+
   onUpdateClick() {
     const postInfo = {
       title: this.state.title,
@@ -26,21 +27,27 @@ class UpdatePost extends React.Component {
       text: this.state.text,
       sid: this.state.sid
     };
-    console.log(postInfo);
-    userRequsets.updatePost(this.postId, postInfo, console.log);
+    userRequsets.updatePost(this.postId, postInfo, () =>
+      this.setState({ updated: true })
+    );
   }
+
   getPost() {
     userRequsets.singlePost(this.postId, post => {
-      const { title, subtitle, imageUrl, text, sid } = post
-      this.setState({ title, subtitle, imageUrl, text, sid, loading: false })
+      const { title, subtitle, imageUrl, text, sid } = post;
+      this.setState({ title, subtitle, imageUrl, text, sid, loading: false });
     });
   }
+
   componentDidMount() {
     this.getPost();
   }
   render() {
     if (this.state.loading) {
       return <div>Page is loading</div>;
+    }
+    if (this.state.updated) {
+      return <div>Post Updated</div>;
     }
     return (
       <Row>
@@ -71,7 +78,9 @@ class UpdatePost extends React.Component {
         <Column basis={3}>
           <TextBox
             value={this.state.text}
-            onChange={(name, value) => { this.onInputChange(name, value); }}
+            onChange={(name, value) => {
+              this.onInputChange(name, value);
+            }}
             name="text"
             placeholder="Body"
           />

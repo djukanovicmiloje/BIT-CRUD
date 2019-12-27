@@ -11,8 +11,8 @@ const Header = ({ buttons }) => (
       <Title text="CRUD" />
     </Column>
     <Column>
-      {buttons.map(button => (
-        <HeaderButton text={button.text} linkTo={button.link} />
+      {buttons.map((button, key) => (
+        <HeaderButton key={key} text={button.text} linkTo={button.link} />
       ))}
     </Column>
   </Row>

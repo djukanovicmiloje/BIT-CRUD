@@ -2,34 +2,35 @@ import React from "react";
 import Row from "../../../Components/Row/Row";
 import PostCard from "./PostCard/PostCard";
 import { http } from "../../../../services/HttpService";
+import LoadingScreen from "../../../Components/LoadingScreen/LoadingScreen";
 
 class PostsPageContent extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: true
-    };
-  }
+  state = {
+    loading: true
+  };
+
   setPosts(posts) {
     this.setState({ loading: false, posts });
   }
+
   getPosts() {
     http.get("http://crud-api.hypetech.xyz/v1/posts", posts =>
       this.setPosts(posts)
     );
   }
+
   componentDidMount() {
     this.getPosts();
   }
+
   render() {
     if (this.state.loading) {
-      return <div>Page is loading</div>;
+      return <LoadingScreen />;
     }
     return (
       <Row>
-        {console.log(this.state.posts)}
-        {this.state.posts.map(post => (
-          <PostCard post={post} />
+        {this.state.posts.map((post, key) => (
+          <PostCard key={key} post={post} />
         ))}
       </Row>
     );
